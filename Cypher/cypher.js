@@ -1,4 +1,3 @@
-// view-source:http://jexp.github.io/cy2neo/
 // requires jQuery
 
 function Cypher(urlSource) {
@@ -28,16 +27,6 @@ function Cypher(urlSource) {
 					if (res.errors.length > 0) {
 						callback(res.errors);
 					} else {
-/* Table is useless
-					var cols = res.results[0].columns;
-						var rows = res.results[0].data.map(function(row) {
-							var r = {};
-							cols.forEach(function(col, index) {
-								r[col] = row.row[index];
-							});
-							return r;
-						});
-*/
 						var nodes = [];
 						var rels = [];
 						var labels = [];
@@ -52,7 +41,6 @@ function Cypher(urlSource) {
 							});
 							rels = rels.concat(row.graph.relationships.map(function(r) { return $.extend({ source:r.startNode, target:r.endNode, caption:r.type}, r.properties); }));
 						});
-//						callback(null,{table:rows,graph:{nodes:nodes, relationships:rels},labels:labels});
 						callback(null,{graph:{nodes:nodes, relationships:rels},labels:labels});
 					}
 				}
